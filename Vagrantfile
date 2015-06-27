@@ -1,7 +1,3 @@
-ENV['VAGRANT_DEFAULT_PROVIDER'] = "docker"
-DOCKER_HOST_NAME = "docker-host"
-DOCKER_HOST_VAGRANTFILE = "Vagrantfile.host"
-
 Vagrant.configure("2") do |config|
 
   # Setup a Node container
@@ -11,8 +7,6 @@ Vagrant.configure("2") do |config|
     node.vm.provider "docker" do |docker|
       docker.name = "node"
       docker.remains_running = true
-      docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
-      docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
       docker.image = "node"
       docker.ports = ["3000:3000"]
       docker.has_ssh = true
@@ -27,8 +21,6 @@ Vagrant.configure("2") do |config|
     postgres.vm.provider "docker" do |docker|
       docker.name = "postgres"
       docker.remains_running = true
-      docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
-      docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
       docker.image = "postgres"
       docker.volumes = ["/mnt/postgres:/data"]
       docker.ports = ["5432:5432"]
@@ -49,8 +41,6 @@ Vagrant.configure("2") do |config|
     redis.vm.provider "docker" do |docker|
       docker.name = "redis"
       docker.remains_running = true
-      docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
-      docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
       docker.image = "redis"
       docker.volumes = ["/mnt/redis:/data"]
       docker.ports = ["6379:6379"]
