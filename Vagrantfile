@@ -1,5 +1,5 @@
 ENV['VAGRANT_DEFAULT_PROVIDER'] = "docker"
-DOCKER_HOST_NAME = "host"
+DOCKER_HOST_NAME = "docker-host"
 DOCKER_HOST_VAGRANTFILE = "Vagrantfile.host"
 
 Vagrant.configure("2") do |config|
@@ -14,7 +14,6 @@ Vagrant.configure("2") do |config|
       docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
       docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
       docker.image = "node"
-      docker.volumes = ["/mnt/node"]
       docker.ports = ["3000:3000"]
       docker.has_ssh = true
     end
